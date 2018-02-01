@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.saude.gov.br/horus-ws/schemas/v1/Erros" 
+	targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Erros">
+		
+	<xs:element name="inconsistencia" type="tns:InconsistenciaType" />
+			
+	<complexType name="InconsistenciaType">
+        <annotation>
+			<documentation>
+				<![CDATA[Representa as inconsistências enviadas ao serviço do hórus.]]>
+			</documentation>
+		</annotation>
+		
+
+		<sequence>
+			<element maxOccurs="1" minOccurs="1" name="idOrigem" type="xs:string">
+               <annotation>
+					<documentation>
+						<![CDATA[Código de origem.]]>
+					</documentation>
+				</annotation>
+			</element>
+			
+			<element maxOccurs="1" minOccurs="1" name="coIBGE" type="xs:string">
+               <annotation>
+					<documentation>
+						<![CDATA[Código do IBGE.]]>
+					</documentation>
+				</annotation>
+			</element>
+			
+			<element maxOccurs="1" minOccurs="1" name="coRegistro" type="xs:string">
+               <annotation>
+					<documentation>
+						<![CDATA[Código do registro.]]>
+					</documentation>
+				</annotation>
+			</element>
+			
+			<element maxOccurs="1" minOccurs="1" name="coRegistroOrigem" type="xs:string">
+               <annotation>
+					<documentation>
+						<![CDATA[Código do registro origem.]]>
+					</documentation>
+				</annotation>
+			</element>
+			
+			<element maxOccurs="1" minOccurs="1" name="codigo" type="tns:CodigoInconsistenciaType">
+               <annotation>
+					<documentation>
+						<![CDATA[Código de erro no serviço do hórus.]]>
+					</documentation>
+				</annotation>
+			</element>
+		
+			<element maxOccurs="1" minOccurs="1" name="mensagem" type="xs:string">
+               <annotation>
+					<documentation>
+						<![CDATA[Mensagem de erro no serviço do hórus.]]>
+					</documentation>
+				</annotation>
+			</element>
+		
+	        <element name="campo" minOccurs="0">
+               <annotation>
+					<documentation>
+						<![CDATA[Campo inconsistente enviado ao serviço do hórus.]]>
+					</documentation>
+				</annotation>
+			    <simpleType>
+					<restriction base="string">
+						<maxLength value="30"/>
+					</restriction>
+				</simpleType>
+          	</element>
+          	
+	         <element name="valor" minOccurs="0">
+               <annotation>
+					<documentation>
+						<![CDATA[Valor inconsistente enviado ao serviço do hórus.]]>
+					</documentation>
+				</annotation>
+			    <simpleType>
+					<restriction base="string">
+						<maxLength value="30"/>
+					</restriction>
+				</simpleType>
+          	</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SistemaExceptionType">
+	    <annotation>
+			<documentation>
+				<![CDATA[Representa as falhas de sistema no serviço do hórus.]]>
+			</documentation>
+		</annotation>
+		
+		<sequence>
+			<element maxOccurs="1" minOccurs="1" name="codigo" type="tns:SystemErrorCodeType"/>
+			<element maxOccurs="1" minOccurs="1" name="mensagem" type="xs:string"/>
+			<element maxOccurs="1" minOccurs="1" name="originatingError" type="xs:string"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="trace" type="xs:string"/>
+		</sequence>
+	</complexType>
+
+	<simpleType name="CodigoInconsistenciaType">
+         <annotation>
+			<documentation>
+				<![CDATA[Código de inconsistência no serviço do hórus.]]>
+			</documentation>
+		</annotation>
+				
+		<restriction base="string">
+			<!-- O estabelecimento com CNES e não consta no cadastro CNES -->
+			<enumeration value="E017"/>
+
+			<!-- O programa de saúde é inválido -->
+			<enumeration value="E018"/>
+			
+			<!--O CNPJ {0} não consta no cadastro da Receita Federal -->
+			<enumeration value="E019"/>
+			
+			<!--O usuário SUS {0} não consta no cadastro CNS   -->
+			<enumeration value="E020"/>
+			
+			<!-- O produto é inválido -->
+			<enumeration value="E022"/>
+
+			<!-- O tipo de entrada é inválido -->
+			<enumeration value="E023"/>
+
+			<!-- O registro já esta cadastrado - duplicado -->
+			<enumeration value="E025"/>
+
+			<!-- O tipo de saída é inválido -->
+			<enumeration value="E026"/>
+
+			<!-- O tipo de estabelecimento é inválido --> 
+			<enumeration value="E027"/>
+
+			<!-- O procedimento não consta no cadastro SIGTAP --> 
+			<enumeration value="E028"/>
+			
+			<!-- O tipo de produto é inválido --> 
+			<enumeration value="E029"/>
+			
+			<!-- O CRM/UF não consta na base do Ministério da Saúde --> 
+			<enumeration value="E030"/>
+
+			<!--O código CNES não está cadastrado na região informada.  --> 
+		    <enumeration value="E031"/>
+		   
+			<!--“dtPosicaoEstoque” está com a Data inferior ao último dia útil do mês. --> 
+		    <enumeration value="E032"/>
+		    
+			<!--O código IBGE do estado é inválido. --> 
+		    <enumeration value="E033"/>
+		    
+ 			<!-- O código CID-10  é inválido. --> 
+		    <enumeration value="E034"/>
+		    
+		    <!-- Arquivo de Retificação não pode ser enviado. Prazo limite excedido. --> 
+		    <enumeration value="E035"/>
+		    <!-- Arquivo de Exclusão não pode ser enviado. Prazo limite excedido.-->
+		    <enumeration value="E036"/>
+		    <!-- Arquivo não pode ser enviado. Prazo limite excedido.--> 
+		    <enumeration value="E037"/>
+			    <!-- A data não pode ser superior a data atual.--> 
+		    <enumeration value="E038"/>    
+
+			<!-- O usuário autenticado não pode consultar, informar, retificar ou excluir dados para este código IBGE --> 
+ 			<enumeration value="E040"/>
+
+		    <!-- O código IBGE do município é inválido  --> 
+		    <enumeration value="E041"/>
+		    <!-- O código IBGE está com o preenchimento incorreto --> 
+		    <enumeration value="E042"/>
+		    <!-- Número de Protocolo não localizado --> 
+		    <enumeration value="E043"/>
+			<!-- O usuário autenticado não pode informar dados de avaliações deferidas.-->
+			<enumeration value="E044"/>
+			<!-- campos nuCNPJ e noFabricanteInternacional não podem estar preenchidos concomitantemente. -->
+			<enumeration value="E045"/>
+			<!-- O registro informado não foi localizado no protocolo -->
+			<enumeration value="E046"/>
+			<!-- dispensação sem “coCNES” para produtos do tipo (B), (E) e (S).-->
+			<enumeration value="E047"/>
+			<!-- data fora do limite .-->
+			<enumeration value="E048"/>
+			<!-- Campo invalido -->
+			<enumeration value="E049"/>
+		    <!--  UF do CRM invalida. -->
+			<enumeration value="E050"/>
+			<!-- Usuário não autorizado. -->
+			<enumeration value="E051"/>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="SystemErrorCodeType">
+		<restriction base="string">
+			<!--  Falha ao executar a operação. -->
+			<enumeration value="E003"/>
+			<!--  O serviço está indisponível. Tente realizar o envio em outro momento. -->
+			<enumeration value="E021"/>
+		</restriction>
+	</simpleType>
+
+</schema>

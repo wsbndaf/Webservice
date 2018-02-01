@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Protocolo"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Protocolo">
+
+	
+	<xsd:complexType name="ProtocoloExclusaoType">
+		<xsd:complexContent>
+			<xsd:extension base="ProtocoloType">
+				<xsd:sequence>
+					<xsd:element name="nuProtocoloExclusao" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+				    		<xsd:documentation><![CDATA[Número do protocolo excluído]]></xsd:documentation>
+				    	</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	
+	<xsd:complexType name="ProtocoloRetificadoType">
+		<xsd:complexContent>
+			<xsd:extension base="ProtocoloType">
+				<xsd:sequence>
+					<xsd:element name="nuProtocoloRetificado" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+				    		<xsd:documentation><![CDATA[Número do protocolo retificado]]></xsd:documentation>
+				    	</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+								<xsd:minLength value="1"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="ProtocoloType">
+		<xsd:sequence>
+			
+			<xsd:element name="nuProtocoloEntrada" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Número de protocolo gerado no momento do recebimento da informação.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="36"/>
+						<xsd:minLength value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		    
+			<xsd:element name="dtRecebimento" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Data e hora em que o sistema recebeu a informação pelo WS. Padrao DD-MM-YYYY HH:mm:ss]]></xsd:documentation>
+		    	</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="\d{2}[-]\d{2}[-]\d{4} \d{2}[:]\d{2}[:]\d{2}"></xsd:pattern>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+</xsd:schema>

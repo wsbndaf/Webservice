@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Prescritor"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Prescritor">
+
+	<xsd:complexType name="PrescritorType">
+		<xsd:sequence>
+			<xsd:element name="coCNES" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Código do CNES do profissional solicitante.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="\d{7}"></xsd:pattern>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+
+			<xsd:element name="nuCRM" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Número do registro no CRM do prescritor.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="8" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+
+			<xsd:element name="ufCRM" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[UF do CRM do prescritor.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:maxLength value="2" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes"
+	elementFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:prd="http://www.saude.gov.br/horus-ws/schemas/v1/Produto"
+	xmlns:err="http://www.saude.gov.br/horus-ws/schemas/v1/Erros"
+	xmlns:pro="http://www.saude.gov.br/horus-ws/schemas/v1/Protocolo"
+	xmlns:pre="http://www.saude.gov.br/horus-ws/schemas/v1/Prescritor"
+	xmlns:pac="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente"
+	xmlns:id="http://www.saude.gov.br/horus-ws/schemas/v1/Identificacao"
+	xmlns:ava="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao"
+	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes">
+		
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Erros"
+		schemaLocation="Erros.xsd" />
+		
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Produto"
+		schemaLocation="Produto.xsd" />
+		
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente"
+		schemaLocation="Paciente.xsd" />
+
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Prescritor"
+		schemaLocation="Prescritor.xsd" />
+				
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Protocolo"
+		schemaLocation="Protocolo.xsd" />
+		
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Identificacao"
+		schemaLocation="Identificacao.xsd" />
+		
+	<xs:import namespace="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao"
+		schemaLocation="Avaliacao.xsd" />
+	
+	<!-- Operações em lote -->
+	<xs:element name="protocolo" type="pro:ProtocoloType" />
+	<xs:element name="protocoloRetificado" type="pro:ProtocoloRetificadoType" />
+	<xs:element name="protocoloExcluido" type="pro:ProtocoloExclusaoType" />
+	
+	<xs:element name="informarPosicaoEstoqueEmLote" type="InformarPosicaoEstoqueEmLoteType" />
+	<xs:element name="retificarPosicaoEstoqueEmLote" type="RetificarPosicaoEstoqueEmLoteType" />
+	<xs:element name="informarEntradaMedicamentoEmLote" type="InformarEntradaMedicamentoEmLoteType" />
+	<xs:element name="retificarEntradaMedicamentoEmLote" type="RetificarEntradaMedicamentoEmLoteType" />
+
+	<xs:element name="informarSaidaMedicamentoEmLote" type="InformarSaidaMedicamentoEmLoteType" />
+	<xs:element name="retificarSaidaMedicamentoEmLote" type="RetificarSaidaMedicamentoEmLoteType" />
+	
+	<xs:element name="informarDispensacaoMedicamentoEmLote" type="InformarDispensacaoMedicamentoEmLoteType" />
+	<xs:element name="retificarDispensacaoMedicamentoEmLote" type="RetificarDispensacaoMedicamentoEmLoteType" />
+	
+	<xs:element name="informarAvaliacaoDeferidaEmLote" type="InformarAvaliacaoEmLoteType" />
+	<xs:element name="retificarAvaliacaoDeferidaEmLote" type="RetificarAvaliacaoEmLoteType" />
+	
+	<xs:complexType name="InformarPosicaoEstoqueEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os registros de entrada no estoque.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+   					<xs:sequence>
+						<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="produto" type="prd:ProdutoType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados relativos ao produto de entrada no estoque.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarPosicaoEstoqueEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os registros de entrada no estoque a serem retificados.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    				<xs:sequence>
+						<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="produto" type="prd:ProdutoVinculadoType"
+							maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados relativos ao registro de entrada no estoque a ser retificado.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarEntradaMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os registros de entrada de medicamento.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    					<xs:sequence>
+							<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="produto" type="prd:ProdutoEntradaType"
+								maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao medicamento de entrada.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarEntradaMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa as entradas de medicamentos que devem ser retificadas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    					<xs:sequence>
+							<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="produto" type="prd:ProdutoVinculadoEntradaType"
+								maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao registro de entrada de medicamento a ser retificado.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarSaidaMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os registros de saída de medicamento.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    				<xs:sequence>
+						<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="produto" type="prd:ProdutoSaidaType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados relativos ao medicamento de saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="estabelecimento-destino" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento de destino.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarSaidaMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa as saídas de medicamentos que devem ser retificadas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    				<xs:sequence>
+						<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="produto" type="prd:ProdutoVinculadoSaidaType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados relativos ao medicamento de saída.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="estabelecimento-destino" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Informa os dados do estabelecimento de destino.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarDispensacaoMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os registros de dispensação.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    					<xs:sequence>
+							<xs:element name="estabelecimento" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados do estabelecimento que registra a dispensação.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="produto" type="prd:ProdutoDispensacaoType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao medicamento.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="paciente" type="pac:PacienteType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao paciente.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="prescritor" type="pre:PrescritorType" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao prescritor.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarDispensacaoMedicamentoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="registro" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa as dispensações de medicamentos que devem ser retificadas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    					<xs:sequence>
+			
+							<xs:element name="estabelecimento" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados do estabelecimento que registra a dispensação.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+							<xs:element name="produto" type="prd:ProdutoVinculadoDispensacaoType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao medicamento.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="paciente" type="pac:PacienteType" maxOccurs="1" minOccurs="1">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao paciente.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="prescritor" type="pre:PrescritorType" maxOccurs="1" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation><![CDATA[Informa os dados relativos ao prescritor.]]></xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							
+						</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarAvaliacaoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avaliacoes" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos as avaliações deferidas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+   					<xs:sequence>
+						<xs:element name="avaliacao" type="ava:AvaliacaoType" maxOccurs="unbounded" minOccurs="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarAvaliacaoEmLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avaliacoes" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa as avaliações que devem ser retificadas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+    					<xs:sequence>
+							<xs:element name="avaliacao" type="ava:AvaliacaoProtocoloType" maxOccurs="unbounded" minOccurs="1"/>
+						</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaProcessamentoLoteType">
+		<xs:sequence>
+	     	<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="situacaoProcessamento" minOccurs="1">
+		    	<xs:annotation>
+		    		<xs:documentation><![CDATA[Situação do registro. 
+		    			AGUARDANDO - Indica que as informações do lote estão aguardando para serem processadas.
+		    			FINALIZADO - Indica que as informações do lote já foram processadas.]]></xs:documentation>
+		    	</xs:annotation>
+		    	<xs:simpleType>
+		    		<xs:restriction base="xs:string">
+		    			<xs:enumeration value="AGUARDANDO"/>
+						<xs:enumeration value="FINALIZADO"/>
+		    		</xs:restriction>
+		    	</xs:simpleType>
+		    </xs:element>
+			
+			<xs:element name="registro" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Identifica os registros que foram processados.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+   					<xs:sequence>
+						<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados do estabelecimento processado.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="produto" type="prd:ProdutoVinculadoType" maxOccurs="1" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados relativos ao produto processado.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="avaliacao" type="ava:AvaliacaoProtocoloType" maxOccurs="unbounded" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados relativos a avaliacao processada.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						
+						<xs:element name="situacao" minOccurs="1">
+					    	<xs:annotation>
+					    		<xs:documentation><![CDATA[Situação do registro. 
+					    			S - Indica que o registro está válido e foi processado pelo Hórus.
+					    			N - Indica que o registro está inconsistente e deve ser reenviado novamente.]]></xs:documentation>
+					    	</xs:annotation>
+					    	<xs:simpleType>
+					    		<xs:restriction base="xs:string">
+					    			<xs:enumeration value="S"/>
+									<xs:enumeration value="N"/>
+					    		</xs:restriction>
+					    	</xs:simpleType>
+					    </xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InconsistenciaProcessamentoLoteType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="inconsistencias" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos as inconsistências encontradas.]]></xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+   					<xs:sequence>
+   						<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="0">
+   							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados do produto processado.]]></xs:documentation>
+							</xs:annotation>
+   						</xs:element>
+   						
+   						<xs:element name="avaliacao" type="ava:AvaliacaoVinculadaSimplesType" maxOccurs="1" minOccurs="0">
+   							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados da avaliação processada.]]></xs:documentation>
+							</xs:annotation>
+   						</xs:element>
+   						
+						<xs:element name="inconsistencia" type="err:InconsistenciaType" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation><![CDATA[Os dados relativos a inconsistência.]]></xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Operações singulares -->
+	<xs:element name="informarPosicaoEstoque" type="InformarPosicaoEstoqueType" />
+	<xs:element name="retificarPosicaoEstoque" type="RetificarPosicaoEstoqueType"/>
+	
+	<xs:element name="informarEntradaMedicamento" type="InformarEntradaMedicamentoType"/>
+	<xs:element name="retificarEntradaMedicamento" type="RetificarEntradaMedicamentoType"/>
+	
+	<xs:element name="informarSaidaMedicamento" type="InformarSaidaMedicamentoType"/>
+	<xs:element name="retificarSaidaMedicamento" type="RetificarSaidaMedicamentoType"/>
+	
+	<xs:element name="informarDispensacaoMedicamento" type="InformarDispensacaoMedicamentoType"/>
+	<xs:element name="retificarDispensacaoMedicamento" type="RetificarDispensacaoMedicamentoType"/>
+	
+	<xs:element name="informarAvaliacao" type="InformarAvaliacaoType"/>
+	<xs:element name="respostaAvaliacao" type="RespostaAvaliacaoType"/>
+
+	<xs:element name="retificarAvaliacao" type="RetificarAvaliacaoType"/>
+	<xs:element name="respostaAvaliacaoRetificada" type="RespostaAvaliacaoRetificadaType"/>
+	
+	<xs:element name="respostaProduto" type="RespostaProdutoType" />
+	<xs:element name="respostaProdutoRetificado" type="RespostaProdutoRetificadoType" />
+	
+	<xs:element name="respostaEntradaProduto" type="RespostaProdutoEntradaType" />
+	<xs:element name="respostaSaidaProduto" type="RespostaProdutoSaidaType" />	
+	<xs:element name="respostaDispensacaoProduto" type="RespostaProdutoDispensacaoType" />	
+	
+	<xs:element name="excluirRegistro" type="ExclusaoRegistroType"/>
+	<xs:element name="respostaExclusaoRegistro" type="RespostaExclusaoRegistroType"/>
+	
+	<xs:element name="respostaProcessamentoLote" type="RespostaProcessamentoLoteType"/>
+	<xs:element name="respostaInconsistencias" type="InconsistenciaProcessamentoLoteType"/>
+	
+	<xs:complexType name="InformarPosicaoEstoqueType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao produto de entrada no estoque.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarPosicaoEstoqueType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoVinculadoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao registro de entrada no estoque a ser retificado.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+				
+	<xs:complexType name="InformarEntradaMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoEntradaType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao medicamento de entrada.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+				
+	<xs:complexType name="RetificarEntradaMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoVinculadoEntradaType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao registro de entrada de medicamento a ser retificado.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarSaidaMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoSaidaType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao medicamento de saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento-destino" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento de destino.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+			
+	<xs:complexType name="RetificarSaidaMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+						
+			<xs:element name="estabelecimento" type="id:EstabelecimentoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registrou a saída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoVinculadoSaidaType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao registro de saída de medicamento a ser retificado.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento-destino" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento de destino.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarDispensacaoMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registra a dispensação.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoDispensacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao medicamento.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="paciente" type="pac:PacienteType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao paciente.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prescritor" type="pre:PrescritorType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao prescritor.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarDispensacaoMedicamentoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="estabelecimento" type="id:EstabelecimentoCNESCNPJType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados do estabelecimento que registra a dispensação.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="produto" type="prd:ProdutoVinculadoDispensacaoType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao medicamento.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="paciente" type="pac:PacienteType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao paciente.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="prescritor" type="pre:PrescritorType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao prescritor.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ExclusaoRegistroType">
+		<xs:sequence>
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao produto que será excluído.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+			<xs:element name="avaliacao" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos a avaliação que será excluída.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			
+     		<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos ao protocolo para exclusão.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaExclusaoRegistroType">
+		<xs:sequence>
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="avaliacao" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="0" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloExclusaoType" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaProdutoRetificadoType">
+		<xs:sequence>
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="1" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloRetificadoType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+
+	<xs:complexType name="RespostaProdutoType">
+		<xs:sequence>
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="1" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaProdutoEntradaType">
+		<xs:sequence>
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="1" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaProdutoSaidaType">
+		<xs:sequence>	
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="1" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaProdutoDispensacaoType">
+		<xs:sequence>		
+			<xs:element name="produto" type="prd:ProdutoVinculadoSimplesType" maxOccurs="1" minOccurs="1" />
+			
+			<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="InformarAvaliacaoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avaliacao" type="ava:AvaliacaoType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos a avaliação deferida.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RetificarAvaliacaoType">
+		<xs:sequence>
+			<xs:element name="identificacao" type="id:IdentificacaoProtocoloType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados de quem enviou o XML.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avaliacao" type="ava:AvaliacaoProtocoloType"
+				maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Informa os dados relativos a avaliação deferida.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RespostaAvaliacaoType">
+		<xs:sequence>
+			<xs:element name="avaliacao" type="ava:AvaliacaoVinculadaSimplesType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Dados da avaliacao.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="protocolo" type="pro:ProtocoloType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Dados do protocolo de registro.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RespostaAvaliacaoRetificadaType">
+		<xs:sequence>
+			<xs:element name="avaliacao" type="ava:AvaliacaoVinculadaSimplesType" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Dados da avaliacao.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="protocolo" type="pro:ProtocoloRetificadoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation><![CDATA[Dados do protocolo de registro.]]></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

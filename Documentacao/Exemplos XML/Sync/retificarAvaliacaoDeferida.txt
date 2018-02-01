@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hor="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hor:retificarAvaliacao>
+         <identificacao>
+            <idOrigem>E</idOrigem>
+            <coIBGE>23</coIBGE>
+            <nuProtocoloEntrada>17100000023000003135</nuProtocoloEntrada>
+         </identificacao>
+         <avaliacao>
+            <coRegistroOrigem>123</coRegistroOrigem>
+            <qtLMEavaliadaC1>30</qtLMEavaliadaC1>
+            <qtLMEavaliadaC2>31</qtLMEavaliadaC2>
+            <qtLMEavaliadaC3>31</qtLMEavaliadaC3>
+            <coProcedimento>0604010010</coProcedimento>
+            <dtAvaliacao>15-10-2017</dtAvaliacao>
+            <avAdequacao>N</avAdequacao>
+            <coCNES>5717493</coCNES>
+            <coCNS>700600555663867</coCNS>
+            <coRegistro>5086</coRegistro>
+         </avaliacao>
+      </hor:retificarAvaliacao>
+   </soapenv:Body>
+</soapenv:Envelope>

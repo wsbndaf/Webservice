@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hor="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hor:informarPosicaoEstoque>
+         <identificacao>
+            <idOrigem>E</idOrigem>
+            <coIBGE>23</coIBGE>
+         </identificacao>
+         <estabelecimento>
+            <coCNES>5717493</coCNES>
+            <coTipoEstabelecimento>A</coTipoEstabelecimento>
+         </estabelecimento>
+         <produto>
+            <coRegistroOrigem>134</coRegistroOrigem>
+            <nuProduto>EBR0266630U0118</nuProduto>
+            <nuLote>132</nuLote>
+            <dtValidade>30-10-2020</dtValidade>
+            <qtProduto>123</qtProduto>
+            <dtRegistro>31-10-2017</dtRegistro>
+            <sgProgramaSaude>DST</sgProgramaSaude>
+         </produto>
+      </hor:informarPosicaoEstoque>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hor="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hor:protocolo>
+         <nuProtocoloEntrada>17100000023000003132</nuProtocoloEntrada>
+         <dtRecebimento>31-10-2017 15:34:12</dtRecebimento>
+      </hor:protocolo>
+   </soapenv:Body>
+</soapenv:Envelope>

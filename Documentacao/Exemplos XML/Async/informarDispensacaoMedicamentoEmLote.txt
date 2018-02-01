@@ -1,0 +1,39 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hor="http://www.saude.gov.br/horus-ws/schemas/v1/HorusTypes">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hor:informarDispensacaoMedicamentoEmLote>
+         <identificacao>
+            <idOrigem>E</idOrigem>
+            <coIBGE>23</coIBGE>
+         </identificacao>
+         <!--1 or more repetitions:-->
+         <registro>
+            <estabelecimento>
+               <idIdentificacao>CNES</idIdentificacao>
+               <coCNES>5717493</coCNES>
+            </estabelecimento>
+            <produto>
+               <coRegistroOrigem>123</coRegistroOrigem>
+               <nuProduto>EBR0266630U0118</nuProduto>
+               <nuLote>123</nuLote>
+               <dtValidade>10-01-2020</dtValidade>
+               <qtProduto>123</qtProduto>
+               <dtRegistro>08-11-2017</dtRegistro>
+               <sgProgramaSaude>DST</sgProgramaSaude>
+               <dtCompetencia>11-2017</dtCompetencia>
+            </produto>
+            <paciente>
+               <nuCNS>700600555663867</nuCNS>
+               <peso>70.10</peso>
+               <altura>175</altura>
+               <cid-10>F20.0</cid-10>
+            </paciente>
+            <prescritor>
+               <coCNES>5717493</coCNES>
+               <nuCRM>1234</nuCRM>
+               <ufCRM>DF</ufCRM>
+            </prescritor>
+         </registro>
+      </hor:informarDispensacaoMedicamentoEmLote>
+   </soapenv:Body>
+</soapenv:Envelope>

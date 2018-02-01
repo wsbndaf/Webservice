@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Identificacao"
+	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Identificacao">
+
+	<xsd:complexType name="IdentificacaoType">
+	    <xsd:sequence>
+			<xsd:element name="idOrigem" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Informa quem enviou se foi ESTADO - 'E' e MUNICIPIO - 'M'.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="M"></xsd:enumeration>
+						<xsd:enumeration value="E"></xsd:enumeration>
+						<xsd:length value="1"></xsd:length>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="1" name="coIBGE">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[O código do IBGE da UF ou município.]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						 <xsd:minInclusive value="11"></xsd:minInclusive>
+     					 <xsd:maxInclusive value="5400000"></xsd:maxInclusive>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+	    </xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="IdentificacaoProtocoloType">
+		<xsd:complexContent>
+			<xsd:extension base="IdentificacaoType">
+				<xsd:sequence>
+					<xsd:element name="nuProtocoloEntrada" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation><![CDATA[Número de protocolo gerado no momento do recebimento da informação.]]></xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:maxLength value="36"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="EstabelecimentoType">
+		<xsd:sequence>
+			<xsd:element name="coCNES" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Código CNES: Código do Cadastro Nacional de Estabelecimentos de Saúde ref. ao estabelecimento do produto.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:integer">		
+						<xsd:totalDigits value="7"/>						
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="coTipoEstabelecimento" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Código de identificação do tipo de estabelecimento.]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="A"/>
+						<xsd:enumeration value="R"/>
+						<xsd:enumeration value="F"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="EstabelecimentoCNESCNPJType">
+		<xsd:sequence>
+		
+			<xsd:element name="idIdentificacao" minOccurs="1">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Define se o dado a ser informado é CNPJ ou CNES do estabelecimento.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:enumeration value="CNES"/>
+						<xsd:enumeration value="CNPJ"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="coCNES" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation><![CDATA[Código CNES: Código do Cadastro Nacional de Estabelecimentos de Saúde do estabelecimento.]]></xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">						
+						<xsd:maxLength value="7"/>
+						<xsd:minLength value="7"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="nuCNPJ" minOccurs="0" >
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Número do CNPJ do estabelecimento.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="14"/>
+						<xsd:minLength value="14"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
