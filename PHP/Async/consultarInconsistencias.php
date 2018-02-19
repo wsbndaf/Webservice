@@ -17,7 +17,7 @@
 
 //Parâmetros de Conexão
 $email = "SEU E-MAIL";
-$email = "SUA SENHA";
+$senha = "SUA SENHA";
 //Parâmetros do XML
 $nuProtocoloEntrada = '17100000023000003132';
 $dtRecebimento = '31-10-2017 15:34:12';
