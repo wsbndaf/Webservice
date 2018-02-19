@@ -20,18 +20,17 @@ Segue descrito abaixo os links de acesso aos ambientes de Homologação e Produ�
 
 No GitHub os profissionais poderão encontrar:
 
-* Padrões de códigos do Web Service
- ** Códigos dos Produtos;
- ** Códigos dos Tipos de Entrada de Estoque;
- ** Códigos dos Tipos de Saída de Estoque;
- ** Códigos dos Programas de Saúde;
- ** Códigos dos Tipos de Estabelecimento de Saúde.
-* Arquivos XSD do Web Service;
-* Exemplos de arquivos XML aceitos pelo web service;
-* Opções de Cliente para download;
-* Roteiro de uso com dicionário de dados;
-* Release notes.
-
+- Padrões de códigos do Web Service
+  - Códigos dos Produtos;
+  - Códigos dos Tipos de Entrada de Estoque;
+  - Códigos dos Tipos de Saída de Estoque;
+  - Códigos dos Programas de Saúde;
+  - Códigos dos Tipos de Estabelecimento de Saúde.
+- Arquivos XSD do Web Service;
+- Exemplos de arquivos XML aceitos pelo web service;
+- Opções de Cliente para download;
+- Roteiro de uso com dicionário de dados;
+- Release notes.
 
 
 ## Solicitação de acesso
