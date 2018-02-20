@@ -43,7 +43,7 @@
 
 //Parâmetros de Conexão
 $email = "SEU E-MAIL";
-$email = "SUA SENHA";
+$senha = "SUA SENHA";
 //Dados XML
 $idOrigem = 'E';
 $coIBGE = '23';
