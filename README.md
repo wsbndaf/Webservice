@@ -7,7 +7,7 @@ O web service da Base Nacional de Dados de Ações e Serviços da Assistência F
 
 ### Roteiro de Uso do Web Service
 
-O Ministério da Saúde disponibiliza no Roteiro de Uso do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](http://portalms.saude.gov.br/images/pdf/2018/fevereiro/08/roteiro-uso-ws-v1.6.pdf).
+O Ministério da Saúde disponibiliza no Roteiro de Uso do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](http://portalms.saude.gov.br/images/pdf/2018/fevereiro/08/roteiro-uso-ws-v1.7.pdf).
 
 ### Links de acesso ao Web Service
 
@@ -39,7 +39,7 @@ A solicitação de perfil de acesso ao web service deverá ser, preferencialment
 
 O sistema de controle de acesso ao web service da Base Nacional de Dados de Ações e Serviços da Assistência Farmacêutica será o SCPA - Sistema de Cadastro e Permissão de Acesso, do Ministério da Saúde.
 
-As instruções para realizar o processo de solicitação de perfil de acesso ao web service estão descritos no tópico “Solicitação de perfil de acesso” do Roteiro de Uso, [disponível aqui](http://portalms.saude.gov.br/assistencia-farmaceutica/base-nacional-de-dados/sistemas/web-service/instrucoes-e-documentacao-do-web-service).
+As instruções para realizar o processo de solicitação de perfil de acesso ao web service estão descritos no tópico “Solicitação de perfil de acesso” do Roteiro de Uso, [disponível aqui](http://portalarquivos2.saude.gov.br/images/pdf/2018/fevereiro/21/Roteiro-uso-WS-V-1-7.pdf).
 
 
 
