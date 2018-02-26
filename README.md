@@ -7,7 +7,7 @@ O web service da Base Nacional de Dados de Ações e Serviços da Assistência F
 
 ### Roteiro de Uso do Web Service
 
-O Ministério da Saúde disponibiliza no Roteiro de Uso do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](http://portalms.saude.gov.br/images/pdf/2018/fevereiro/08/roteiro-uso-ws-v1.7.pdf).
+O Ministério da Saúde disponibiliza no Roteiro de Uso do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](http://portalms.saude.gov.br/images/pdf/2018/fevereiro/21/Roteiro-uso-WS-V-1-7.pdf).
 
 ### Links de acesso ao Web Service
 
