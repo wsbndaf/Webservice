@@ -5,9 +5,9 @@ O web service da Base Nacional de Dados de Ações e Serviços da Assistência F
 
 ## Instruções e documentação do web service
 
-### Roteiro de Uso do Web Service
+### Manual de Integração do Web Service
 
-O Ministério da Saúde disponibiliza no Manual de Integração do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](http://portalms.saude.gov.br/images/pdf/2018/fevereiro/21/Roteiro-uso-WS-V-1-7.pdf).
+O Ministério da Saúde disponibiliza no Manual de Integração do web service todas as informações necessárias para o desenvolvimento do sistema por parte dos municípios e estados. A leitura total desse documento é essencial para o desenvolvimento do web service. [Clique aqui para acessar o documento](https://github.com/wsbndaf/Webservice/tree/master/Documentacao/Manual_Integracao).
 
 ### Links de acesso ao Web Service
 
@@ -28,9 +28,8 @@ No GitHub os profissionais poderão encontrar:
   - Códigos dos Tipos de Estabelecimento de Saúde.
 - Arquivos XSD do Web Service;
 - Exemplos de arquivos XML aceitos pelo web service;
-- Opções de Cliente para download;
-- Roteiro de uso com dicionário de dados;
-- Release notes.
+- Opções de Cliente PHP para download;
+- Manual de Integração com dicionário de dados;
 
 
 ## Solicitação de acesso
@@ -39,7 +38,7 @@ A solicitação de perfil de acesso ao web service deverá ser, preferencialment
 
 O sistema de controle de acesso ao web service da Base Nacional de Dados de Ações e Serviços da Assistência Farmacêutica será o SCPA - Sistema de Cadastro e Permissão de Acesso, do Ministério da Saúde.
 
-As instruções para realizar o processo de solicitação de perfil de acesso ao web service estão descritos no tópico “Solicitação de perfil de acesso” do Roteiro de Uso, [disponível aqui](http://portalarquivos2.saude.gov.br/images/pdf/2018/fevereiro/21/Roteiro-uso-WS-V-1-7.pdf).
+As instruções para realizar o processo de solicitação de perfil de acesso ao web service estão descritos no tópico “Solicitação de perfil de acesso” do Manual de Integração, [disponível aqui](https://github.com/wsbndaf/Webservice/tree/master/Documentacao/Manual_Integracao).
 
 
 
