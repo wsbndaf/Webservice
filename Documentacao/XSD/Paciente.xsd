@@ -1,34 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente"
-	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente">
+<?xml version='1.0' encoding='UTF-8'?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente" elementFormDefault="unqualified" targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Paciente">
 
 	<xsd:complexType name="PacienteType">
 		<xsd:sequence>
-			<xsd:element name="nuCNS" minOccurs="1">
+			<xsd:element minOccurs="1" name="nuCNS">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[Número do Cartão Nacional de Saúde (CNS) do usuário SUS.]]></xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
-						<xsd:pattern value="\d{15}"></xsd:pattern>						
+						<xsd:pattern value="\d{15}"/>						
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 		
-			<xsd:element name="peso" minOccurs="0">
+			<xsd:element minOccurs="0" name="peso">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Peso do usuário SUS em gramas.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:decimal">
-		    			<xsd:totalDigits value="3"/>
+		    			<xsd:totalDigits value="5"/>
 		    			<xsd:fractionDigits value="2"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 		    </xsd:element>
 		    
-		   	<xsd:element name="altura" minOccurs="0">
+		   	<xsd:element minOccurs="0" name="altura">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Altura do usuário SUS em centímetros.]]></xsd:documentation>
 		    	</xsd:annotation>
@@ -39,16 +36,14 @@
 		    	</xsd:simpleType>
 		    </xsd:element>
 		    
-		   	<xsd:element name="cid-10" minOccurs="0">
+		   	<xsd:element minOccurs="0" name="cid-10">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Classificação Estatística Internacional de Doenças e Problemas Relacionados à Saúde.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:string">
 		    			<xsd:maxLength value="5"/>
-						<xsd:minLength value="5"/>
-						<xsd:pattern value="[A-Z]\d{2}[.]\d{1}"></xsd:pattern>
-						
+						<xsd:minLength value="3"/>						
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 		    </xsd:element>
