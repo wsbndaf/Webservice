@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao"
-	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao">
+<?xml version='1.0' encoding='UTF-8'?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao" elementFormDefault="unqualified" targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Avaliacao">
 
 	<xsd:complexType name="AvaliacaoProtocoloType">
         <xsd:complexContent>
               <xsd:extension base="AvaliacaoType">
                     <xsd:sequence>
-                            <xsd:element name="coRegistro" type="xsd:integer" minOccurs="1" />
+                            <xsd:element name="coRegistro" nillable="true" type="xsd:integer"/>
                     </xsd:sequence>
               </xsd:extension>
         </xsd:complexContent>
@@ -15,19 +12,20 @@
 	
 	<xsd:complexType name="AvaliacaoVinculadaSimplesType">
 		<xsd:sequence>
-			<xsd:element minOccurs="0" name="coRegistroOrigem">
+			<xsd:element minOccurs="0" name="coRegistroOrigem" nillable="true">
 				<xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de Registro a que os campos abaixo pertencem no sistema do usuário logado.]]>
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
-					<xsd:restriction base="xsd:integer">
-						<xsd:totalDigits value="30"/>
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>					    			
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
-			 <xsd:element minOccurs="1" name="coRegistro">
+			 <xsd:element minOccurs="0" name="coRegistro" nillable="true">
 				<xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de registro no Hórus WS.]]>
@@ -44,20 +42,21 @@
 	
 	<xsd:complexType name="AvaliacaoType">
 		<xsd:sequence>
-			<xsd:element minOccurs="0" name="coRegistroOrigem">
+			<xsd:element minOccurs="0" name="coRegistroOrigem" nillable="true">
 				<xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de Registro a que os campos abaixo pertencem no sistema do usuário logado.]]>
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
-					<xsd:restriction base="xsd:integer">
-						<xsd:totalDigits value="30"/>
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>					    			
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 			
-			<xsd:element name="qtLMEavaliadaC1" minOccurs="1">
+			<xsd:element minOccurs="1" name="qtLMEavaliadaC1" nillable="false">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[Quantidade avaliada da primeira competência do LME.]]></xsd:documentation>
 				</xsd:annotation>
@@ -68,7 +67,7 @@
 				</xsd:simpleType>
 			</xsd:element>
 			
-			<xsd:element name="qtLMEavaliadaC2" minOccurs="0">
+			<xsd:element minOccurs="0" name="qtLMEavaliadaC2">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[Quantidade avaliada da segunda competência do LME.]]></xsd:documentation>
 				</xsd:annotation>
@@ -79,7 +78,7 @@
 				</xsd:simpleType>
 			</xsd:element>
 			
-			<xsd:element name="qtLMEavaliadaC3" minOccurs="0">
+			<xsd:element minOccurs="0" name="qtLMEavaliadaC3">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[Quantidade avaliada da terceira competência do LME.]]></xsd:documentation>
 				</xsd:annotation>
@@ -90,29 +89,31 @@
 				</xsd:simpleType>
 			</xsd:element>
 		
-			<xsd:element name="coProcedimento" minOccurs="1">
+			<xsd:element minOccurs="1" name="coProcedimento">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Código do Procedimento da Tabela de Procedimentos, Medicamentos, Órteses, Próteses e Materiais Especiais do Sistema Único de Saúde.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
-		    		<xsd:restriction base="xsd:integer">
-		    			<xsd:totalDigits value="10"/>
-		    		</xsd:restriction>
+		    		
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="10"/>
+		    			<xsd:minLength value="1"/>					    			
+					</xsd:restriction>
 		    	</xsd:simpleType>
 		    </xsd:element>
 		 	    
-		  	<xsd:element name="dtAvaliacao" minOccurs="1">
+		  	<xsd:element minOccurs="1" name="dtAvaliacao">
 				<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Data da avaliação. Padrão: DD-MM-AAAA]]></xsd:documentation>
 		    	</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
-						<xsd:pattern value="\d{2}[-]\d{2}[-]\d{4}"></xsd:pattern>
+						<xsd:pattern value="[0-3][0-9]-[01][0-9]-[0-9]{4}"/>
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 		    
-		   	<xsd:element name="avAdequacao" minOccurs="1">
+		   	<!--  xsd:element name="avAdequacao" minOccurs="1">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Avaliação de Adequação.]]></xsd:documentation>
 		    	</xsd:annotation>
@@ -124,7 +125,16 @@
 		    	</xsd:simpleType>
 		    </xsd:element>
 		    
-		    <xsd:element name="coCNES" minOccurs="1">
+		    -->
+		    <xsd:element minOccurs="1" name="avAdequacao" nillable="false" type="SimNaoEnumType">
+		    	<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Avaliação de Adequação.]]></xsd:documentation>
+		    	</xsd:annotation>		    	
+		    </xsd:element>
+		    
+		    
+		    
+		    <xsd:element minOccurs="1" name="coCNES">
 				<xsd:annotation>
 					<xsd:documentation><![CDATA[Código CNES: Código do Cadastro Nacional de Estabelecimentos de Saúde ref. ao produto.]]></xsd:documentation>
 				</xsd:annotation>
@@ -135,7 +145,7 @@
 				</xsd:simpleType>
 			</xsd:element>
 			
-		   	<xsd:element name="coCNS" minOccurs="1">
+		   	<xsd:element minOccurs="1" name="coCNS">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Número do Cartão Nacional de Saúde (CNS) do usuário SUS.]]></xsd:documentation>
 		    	</xsd:annotation>
@@ -146,6 +156,14 @@
 		    	</xsd:simpleType>
 		    </xsd:element>
 		</xsd:sequence>
+		
 	</xsd:complexType>
+	<xsd:simpleType name="SimNaoEnumType">
+    	<xsd:restriction base="xsd:string">
+             <xsd:enumeration value="S"/>
+        	     <xsd:enumeration value="N"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+	
 
 </xsd:schema>
