@@ -1,9 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.saude.gov.br/horus-ws/schemas/v1/Erros" 
-	targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Erros">
+<?xml version='1.0' encoding='UTF-8'?><schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.saude.gov.br/horus-ws/schemas/v1/Erros" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Erros">
 		
-	<xs:element name="inconsistencia" type="tns:InconsistenciaType" />
+	<xs:element name="inconsistencia" type="tns:InconsistenciaType"/>
 			
 	<complexType name="InconsistenciaType">
         <annotation>
@@ -14,7 +11,7 @@
 		
 
 		<sequence>
-			<element maxOccurs="1" minOccurs="1" name="idOrigem" type="xs:string">
+			<element maxOccurs="1" minOccurs="0" name="idOrigem" type="xs:string">
                <annotation>
 					<documentation>
 						<![CDATA[Código de origem.]]>
@@ -22,7 +19,7 @@
 				</annotation>
 			</element>
 			
-			<element maxOccurs="1" minOccurs="1" name="coIBGE" type="xs:string">
+			<element maxOccurs="1" minOccurs="0" name="coIBGE" type="xs:string">
                <annotation>
 					<documentation>
 						<![CDATA[Código do IBGE.]]>
@@ -30,7 +27,7 @@
 				</annotation>
 			</element>
 			
-			<element maxOccurs="1" minOccurs="1" name="coRegistro" type="xs:string">
+			<element maxOccurs="1" minOccurs="0" name="coRegistro" type="xs:string">
                <annotation>
 					<documentation>
 						<![CDATA[Código do registro.]]>
@@ -38,7 +35,7 @@
 				</annotation>
 			</element>
 			
-			<element maxOccurs="1" minOccurs="1" name="coRegistroOrigem" type="xs:string">
+			<element maxOccurs="1" minOccurs="0" name="coRegistroOrigem" type="xs:string">
                <annotation>
 					<documentation>
 						<![CDATA[Código do registro origem.]]>
@@ -46,7 +43,7 @@
 				</annotation>
 			</element>
 			
-			<element maxOccurs="1" minOccurs="1" name="codigo" type="tns:CodigoInconsistenciaType">
+			<element maxOccurs="1" minOccurs="0" name="codigo" type="tns:CodigoInconsistenciaType">
                <annotation>
 					<documentation>
 						<![CDATA[Código de erro no serviço do hórus.]]>
@@ -62,7 +59,7 @@
 				</annotation>
 			</element>
 		
-	        <element name="campo" minOccurs="0">
+	        <element minOccurs="0" name="campo" nillable="true">
                <annotation>
 					<documentation>
 						<![CDATA[Campo inconsistente enviado ao serviço do hórus.]]>
@@ -75,7 +72,7 @@
 				</simpleType>
           	</element>
           	
-	         <element name="valor" minOccurs="0">
+	         <element minOccurs="0" name="valor" nillable="true">
                <annotation>
 					<documentation>
 						<![CDATA[Valor inconsistente enviado ao serviço do hórus.]]>
@@ -83,7 +80,7 @@
 				</annotation>
 			    <simpleType>
 					<restriction base="string">
-						<maxLength value="30"/>
+						<maxLength value="200"/>
 					</restriction>
 				</simpleType>
           	</element>
@@ -113,6 +110,8 @@
 		</annotation>
 				
 		<restriction base="string">
+			<!-- O valor do campo <nome do campo> é um dado inválido.-->
+			<enumeration value="E001"/>
 			<!-- O estabelecimento com CNES e não consta no cadastro CNES -->
 			<enumeration value="E017"/>
 
@@ -168,8 +167,9 @@
 		    <!-- Arquivo não pode ser enviado. Prazo limite excedido.--> 
 		    <enumeration value="E037"/>
 			    <!-- A data não pode ser superior a data atual.--> 
-		    <enumeration value="E038"/>    
-
+		    <enumeration value="E038"/>
+		    <!--O campo é de preenchimento obrigatório quando o produto é do tipo Especializado.-->
+			<enumeration value="E039"/>
 			<!-- O usuário autenticado não pode consultar, informar, retificar ou excluir dados para este código IBGE --> 
  			<enumeration value="E040"/>
 
@@ -194,7 +194,11 @@
 		    <!--  UF do CRM invalida. -->
 			<enumeration value="E050"/>
 			<!-- Usuário não autorizado. -->
-			<enumeration value="E051"/>
+			<enumeration value="E051"/>			
+			<!-- O registro e protocolo {0} é inválido. -->
+			<enumeration value="E052"/>
+			<!-- O valor do campo maior que permitido. -->			
+			<enumeration value="E053"/>
 		</restriction>
 	</simpleType>
 
