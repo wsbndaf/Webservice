@@ -1,23 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Produto"
-	elementFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Produto">
+<?xml version='1.0' encoding='UTF-8'?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.saude.gov.br/horus-ws/schemas/v1/Produto" elementFormDefault="unqualified" targetNamespace="http://www.saude.gov.br/horus-ws/schemas/v1/Produto">
 
 	<xsd:complexType name="ProdutoVinculadoSimplesType">
        	<xsd:sequence>
-			<xsd:element name="coRegistroOrigem" minOccurs="0">
+			<xsd:element minOccurs="0" name="coRegistroOrigem">
 				<xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de Registro a que os campos abaixo pertencem no sistema do usuário logado.]]>
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
-					<xsd:restriction base="xsd:integer">
-						<xsd:totalDigits value="30"/>
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>					    			
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
-			<xsd:element name="coRegistro" minOccurs="1">
+			<xsd:element minOccurs="1" name="coRegistro">
                <xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de Registro interno no Hórus WS.]]>
@@ -36,7 +34,7 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoType">
                     <xsd:sequence>
-                          <xsd:element name="coRegistro" minOccurs="1">
+                          <xsd:element minOccurs="1" name="coRegistro" nillable="true">
 				               <xsd:annotation>
 									<xsd:documentation>
 										<![CDATA[Código de Registro interno no Hórus WS.]]>
@@ -57,7 +55,7 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoSaidaType">
                     <xsd:sequence>
-                          <xsd:element name="coRegistro" minOccurs="1">
+                          <xsd:element minOccurs="1" name="coRegistro">
 				               <xsd:annotation>
 									<xsd:documentation>
 										<![CDATA[Código de Registro interno no Hórus WS.]]>
@@ -78,7 +76,7 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoEntradaType">
                     <xsd:sequence>
-                          <xsd:element name="coRegistro" minOccurs="1">
+                          <xsd:element minOccurs="1" name="coRegistro">
 				               <xsd:annotation>
 									<xsd:documentation>
 										<![CDATA[Código de Registro interno no Hórus WS.]]>
@@ -99,7 +97,7 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoDispensacaoType">
                     <xsd:sequence>
-                          <xsd:element name="coRegistro" minOccurs="1">
+                          <xsd:element minOccurs="1" name="coRegistro">
 				               <xsd:annotation>
 									<xsd:documentation>
 										<![CDATA[Código de Registro interno no Hórus WS.]]>
@@ -120,13 +118,13 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoType">
               	 <xsd:sequence> 
-	              	<xsd:element name="dtCompetencia" minOccurs="0">
+	              	<xsd:element minOccurs="0" name="dtCompetencia">
 						<xsd:annotation>
 				    		<xsd:documentation><![CDATA[Data de competência da dispensação. Padrão: MM-AAAA]]></xsd:documentation>
 				    	</xsd:annotation>
 						<xsd:simpleType>
 							<xsd:restriction base="xsd:string">
-								<xsd:pattern value="\d{2}[-]\d{4}"></xsd:pattern>
+								<xsd:pattern value="[01][0-9]-[0-9]{4}"/>
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:element>
@@ -139,18 +137,18 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoType">
                     <xsd:sequence>          
-                        <xsd:element name="nuCNPJFabricante" minOccurs="0">
+                        <xsd:element minOccurs="0" name="nuCNPJFabricante">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Número do CNPJ do fabricante .]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:string">
-					    			<xsd:pattern value="\d{14}"></xsd:pattern>
+					    			<xsd:pattern value="\d{14}"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="noFabricanteInternacional" minOccurs="0" >
+						<xsd:element minOccurs="0" name="noFabricanteInternacional">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Nome do fabricante internacional do medicamento.]]></xsd:documentation>
 					    	</xsd:annotation>
@@ -162,7 +160,7 @@
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="tpSaida" minOccurs="1" >
+						<xsd:element minOccurs="1" name="tpSaida">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Tipo de saída do produto no estoque.]]></xsd:documentation>
 					    	</xsd:annotation>
@@ -182,63 +180,63 @@
         <xsd:complexContent>
               <xsd:extension base="ProdutoType">
                     <xsd:sequence>          
-                        <xsd:element name="nuCNPJFabricante" minOccurs="1">
+                        <xsd:element minOccurs="0" name="nuCNPJFabricante">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Número do CNPJ do fabricante .]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:string">
-					    			<xsd:pattern value="\d{14}"></xsd:pattern>
+					    			<xsd:pattern value="\d{14}"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="noFabricanteInternacional" minOccurs="1" >
+						<xsd:element minOccurs="0" name="noFabricanteInternacional">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Nome do fabricante internacional do medicamento.]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:string">
-					    			<xsd:maxLength value="200"></xsd:maxLength>
+					    			<xsd:maxLength value="200"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="nuNotaFiscal" minOccurs="1">
+						<xsd:element minOccurs="1" name="nuNotaFiscal">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Número documento fiscal ou simples remessa.]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:string">
-					    			<xsd:maxLength value="100"></xsd:maxLength>
+					    			<xsd:maxLength value="100"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="nuValorUnitario" minOccurs="1" >
+						<xsd:element minOccurs="1" name="nuValorUnitario">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Valor monetário unitário do produto adquirido.]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:decimal">
-					    			<xsd:totalDigits value="12"/>
-					    			<xsd:fractionDigits value="4"/>
+					    			<xsd:totalDigits value="18"/>
+					    			<xsd:fractionDigits value="10"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="nuCNPJDistribuidor" minOccurs="1" >
+						<xsd:element minOccurs="1" name="nuCNPJDistribuidor">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Número do CNPJ do distribuidor.]]></xsd:documentation>
 					    	</xsd:annotation>
 					    	<xsd:simpleType>
 					    		<xsd:restriction base="xsd:string">
-					    			<xsd:pattern value="\d{14}"></xsd:pattern>
+					    			<xsd:pattern value="\d{14}"/>
 					    		</xsd:restriction>
 					    	</xsd:simpleType>
 						</xsd:element>
 						
-						<xsd:element name="tpEntradaEstoque" minOccurs="1" >
+						<xsd:element minOccurs="1" name="tpEntradaEstoque">
 							<xsd:annotation>
 					    		<xsd:documentation><![CDATA[Tipo de entrada do produto no estoque.]]></xsd:documentation>
 					    	</xsd:annotation>
@@ -256,102 +254,308 @@
 
 	<xsd:complexType name="ProdutoType">
 		<xsd:sequence>
-			<xsd:element name="coRegistroOrigem" minOccurs="0">
+			<xsd:element minOccurs="0" name="coRegistroOrigem">
 				<xsd:annotation>
 					<xsd:documentation>
 						<![CDATA[Código de Registro a que os campos abaixo pertencem no sistema do usuário logado.]]>
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
-					<xsd:restriction base="xsd:integer">
-						<xsd:totalDigits value="30"/>
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>					    			
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 		
-			<xsd:element name="nuProduto" maxOccurs="1" minOccurs="1">
+			<xsd:element maxOccurs="1" minOccurs="1" name="nuProduto">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Código do Medicamento: Código do produto cadastrado na base de dados do Hórus.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:string">
-		    			<xsd:minLength value="1"></xsd:minLength>
-		    			<xsd:maxLength value="30"></xsd:maxLength>
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="21"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 		    </xsd:element>
 
-			<xsd:element name="nuLote" minOccurs="1" maxOccurs="1">
+			<xsd:element maxOccurs="1" minOccurs="1" name="nuLote">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Lote: Identificador do lote do medicamento.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:string">
-		    			<xsd:minLength value="1"></xsd:minLength>
-		    			<xsd:maxLength value="30"></xsd:maxLength>
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="30"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 		    </xsd:element>
 		    
-			<xsd:element name="dtValidade" minOccurs="1" maxOccurs="1">
+			<xsd:element maxOccurs="1" minOccurs="1" name="dtValidade">
 				<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Data de Validade: Identificador da data de validade do medicamento. Padrão: DD-MM-AAAA]]></xsd:documentation>
 		    	</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
-						<xsd:pattern value="\d{2}[-]\d{2}[-]\d{4}"></xsd:pattern>
+						<xsd:pattern value="[0-3][0-9]-[01][0-9]-[0-9]{4}"/>
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 			
-			<xsd:element name="qtProduto" minOccurs="1" maxOccurs="1">
+			<xsd:element maxOccurs="1" minOccurs="1" name="qtProduto">
 		    	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Quantidade do produto. Quantidade de entrada, saída, dispensação ou em estoque por unidade de apresentação conforme operação.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:integer">
-		    			<xsd:minInclusive value="1"/>
+		    			<xsd:minInclusive value="0"/>
          				<xsd:maxInclusive value="999999999999"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 			</xsd:element>
 					    
-			<xsd:element name="dtRegistro" minOccurs="1" maxOccurs="1">
+			<xsd:element maxOccurs="1" minOccurs="1" name="dtRegistro">
 				<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Data de entrada, saída, dispensação ou de estoque do produto conforme operação. Padrão: DD-MM-AAAA]]></xsd:documentation>
 		    	</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
-						<xsd:pattern value="\d{2}[-]\d{2}[-]\d{4}"></xsd:pattern>
+						<xsd:pattern value="[0-3][0-9]-[01][0-9]-[0-9]{4}"/>
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
 			
-			<xsd:element name="sgProgramaSaude" minOccurs="0">
+			<xsd:element minOccurs="0" name="sgProgramaSaude">
 			 	<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Programa de saúde vinculado ao produto.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:string">    			
-		    			<xsd:pattern value="[A-Z]{1,15}"></xsd:pattern>
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="15"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 			</xsd:element>
 
-			<xsd:element name="coIUM" minOccurs="0" >
+			<xsd:element minOccurs="0" name="coIUM">
 				<xsd:annotation>
 		    		<xsd:documentation><![CDATA[Identificador Único de Medicamento do produto.]]></xsd:documentation>
 		    	</xsd:annotation>
 		    	<xsd:simpleType>
 		    		<xsd:restriction base="xsd:string">
-		    			<xsd:minLength value="1"></xsd:minLength>
-		    			<xsd:maxLength value="200"></xsd:maxLength>
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="20"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+		
+	<xsd:complexType name="ProdutoNovoType">
+		<xsd:sequence>
+			<xsd:element minOccurs="0" name="coRegistroOrigem">
+				<xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Código de Registro a que os campos abaixo pertencem no sistema do usuário logado.]]>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>					    			
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		
+			<xsd:element maxOccurs="1" minOccurs="0" name="nuProduto">
+		    	<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Código do Medicamento: Código do produto cadastrado na base de dados do Hórus.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="21"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+		    </xsd:element>
+
+			<xsd:element maxOccurs="1" minOccurs="0" name="nuLote">
+		    	<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Lote: Identificador do lote do medicamento.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="30"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+		    </xsd:element>
+		    
+			<xsd:element maxOccurs="1" minOccurs="0" name="dtValidade">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Data de Validade: Identificador da data de validade do medicamento. Padrão: DD-MM-AAAA]]></xsd:documentation>
+		    	</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[0-3][0-9]-[01][0-9]-[0-9]{4}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element maxOccurs="1" minOccurs="1" name="qtProduto">
+		    	<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Quantidade do produto. Quantidade de entrada, saída, dispensação ou em estoque por unidade de apresentação conforme operação.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:integer">
+		    			<xsd:minInclusive value="0"/>
+         				<xsd:maxInclusive value="999999999999"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+					    
+			<xsd:element maxOccurs="1" minOccurs="0" name="dtRegistro">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Data de entrada, saída, dispensação ou de estoque do produto conforme operação. Padrão: DD-MM-AAAA]]></xsd:documentation>
+		    	</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[0-3][0-9]-[01][0-9]-[0-9]{4}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="sgProgramaSaude">
+			 	<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Programa de saúde vinculado ao produto.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>		    		
+		    		<xsd:restriction base="xsd:string">    			
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="15"/>
 		    		</xsd:restriction>
 		    	</xsd:simpleType>
 			</xsd:element>
 
+			<xsd:element minOccurs="0" name="coIUM">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Identificador Único de Medicamento do produto.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:minLength value="1"/>
+		    			<xsd:maxLength value="20"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>		
+		          
+	        <xsd:element minOccurs="0" name="nuCNPJFabricante" nillable="true">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Número do CNPJ do fabricante .]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:pattern value="\d{14}"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="noFabricanteInternacional">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Nome do fabricante internacional do medicamento.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="200"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="tpSaida">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Tipo de saída do produto no estoque.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    			<xsd:minLength value="1"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="nuNotaFiscal">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Número documento fiscal ou simples remessa.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="100"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="nuValorUnitario">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Valor monetário unitário do produto adquirido.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:decimal">
+		    			<xsd:totalDigits value="18"/>
+		    			<xsd:fractionDigits value="10"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="nuCNPJDistribuidor" nillable="true">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Número do CNPJ do distribuidor.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:pattern value="\d{14}"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element minOccurs="0" name="tpEntradaEstoque">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Tipo de entrada do produto no estoque.]]></xsd:documentation>
+		    	</xsd:annotation>
+		    	<xsd:simpleType>
+		    		<xsd:restriction base="xsd:string">
+		    			<xsd:maxLength value="30"/>
+		    			<xsd:minLength value="1"/>
+		    		</xsd:restriction>
+		    	</xsd:simpleType>
+			</xsd:element>	
+			 
+            <xsd:element minOccurs="0" name="dtCompetencia">
+				<xsd:annotation>
+		    		<xsd:documentation><![CDATA[Data de competência da dispensação. Padrão: MM-AAAA]]></xsd:documentation>
+		    	</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:pattern value="[01][0-9]-[0-9]{4}"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element minOccurs="0" name="coRegistro">
+               <xsd:annotation>
+					<xsd:documentation>
+						<![CDATA[Código de Registro interno no Hórus WS.]]>
+					</xsd:documentation>
+				</xsd:annotation>
+			    <xsd:simpleType>
+					<xsd:restriction base="xsd:integer">
+						<xsd:totalDigits value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+          	</xsd:element>			
 		</xsd:sequence>
 	</xsd:complexType>
-
-
+	
+	
+		
+		
 </xsd:schema>
