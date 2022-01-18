@@ -5,7 +5,7 @@
 O web service da Base Nacional de Dados de Ações e Serviços da Assistência Farmacêutica no SUS (BNDASAF) permite que Municípios, Estados e Distrito Federal que não utilizam o sistema Hórus possam enviar as informações referentes a posição de estoque, entradas, saídas, dispensações deferidas e avaliações, no âmbito dos medicamentos contidos na Rename para a BNDASAF.
 
 
-## Descontinuição do serviço
+## Descontinuação do serviço
 O Ministério da Saúde desenvolveu o serviço SOA Bnafar que irá substituir este serviço. A previsão é que em novembro de 2022 o web service seja desativado pelo Ministério da Saúde.
 Todas as informações sobre o SOA Bnafar estão disponíveis [aqui](https://servicos-datasus.saude.gov.br/detalhe/DxRPsAn2mh)
 
