@@ -1,6 +1,0 @@
-Com o lançamento do Portal Bnafar o Ministério da Saúde não estará mais atualizando as extrações do GitHub. 
-
-O Portal de Serviços possui dashboards onde os gestores poderão acompanhar com maior detalhamento todos os dados transmitidos para a Bnafar.
-
-Link com o manual para solicitar acesso ao Portal de Serviços da Bnafar: http://bvsms.saude.gov.br/bvs/publicacoes/base_dados_assistencia_farmaceutica_manual.pdf
-
