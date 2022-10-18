@@ -6,7 +6,7 @@ O web service da Base Nacional de Dados de Ações e Serviços da Assistência F
 
 
 ## Descontinuação do serviço
-O Ministério da Saúde desenvolveu o serviço SOA Bnafar que irá substituir este serviço. A previsão é que em novembro de 2022 o web service seja desativado pelo Ministério da Saúde.
+O Ministério da Saúde desenvolveu o serviço SOA Bnafar que irá substituir este serviço. O web service será desativado pelo Ministério da Saúde em breve.
 Todas as informações sobre o SOA Bnafar estão disponíveis [aqui](https://servicos-datasus.saude.gov.br/detalhe/DxRPsAn2mh)
 
 
